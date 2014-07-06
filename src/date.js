@@ -455,4 +455,4 @@ var DateUtil = {
   }
 };
 
-modules.exports = DateUtil;
+module.exports = DateUtil;
