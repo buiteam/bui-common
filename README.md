@@ -17,8 +17,8 @@ $ spm install bui-common --save
 ## Usage
 
 ```js
-var buiCommon = require('bui-common');
-// use buiCommon
+var common = require('bui-common');
+// use common
 ```
 
 ## Api
