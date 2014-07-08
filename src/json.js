@@ -3,6 +3,8 @@
  * @ignore
  */
 
+var $ = require('jquery');
+
 var win = window,
   UA = require('./ua'),
   JSON = win.JSON;

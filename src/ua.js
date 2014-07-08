@@ -4,6 +4,8 @@
  * @author dxq613@gmail.com
  */
 
+var $ = require('jquery');
+
 function numberify(s) {
   var c = 0;
   // convert '1.2.3.4' to 1.234

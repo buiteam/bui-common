@@ -4,7 +4,8 @@
  */
 
 'use strict';
-var BUI = require('../util'),
+var $ = require('jquery'),
+  BUI = require('../util'),
   Base = require('../base'),
   /**
    * @class BUI.Component.Loader

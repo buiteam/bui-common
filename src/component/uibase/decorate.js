@@ -4,7 +4,8 @@
  */
 
 
-var ArrayUtil = require('../../array'),
+var $ = require('jquery'),
+  ArrayUtil = require('../../array'),
   JSON = require('../../json'),
   prefixCls = BUI.prefix,
   FIELD_PREFIX = 'data-',

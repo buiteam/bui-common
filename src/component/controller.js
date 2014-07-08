@@ -13,7 +13,9 @@
 
 
 'use strict';
-var UIBase = require('./uibase'),
+
+var $ = require('jquery'), 
+  UIBase = require('./uibase/uibase'),
   Manager = require('./manage'),
   View = require('./view'),
   Loader = require('./loader'),

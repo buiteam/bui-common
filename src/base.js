@@ -5,6 +5,8 @@
  * @ignore
  */
 
+var $ = require('jquery');
+
 var INVALID = {},
   Observable = require('./observable');
 

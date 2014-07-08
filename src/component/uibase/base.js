@@ -5,6 +5,8 @@
  * @ignore
  */
 
+var $ = require('jquery');
+
 var Manager = require('../manage'),
 
   UI_SET = '_uiSet',

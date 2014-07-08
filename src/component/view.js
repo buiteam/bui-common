@@ -5,9 +5,10 @@
  * @ignore
  */
 
-var win = window,
+var $ = require('jquery'),
+  win = window,
   Manager = require('./manage'),
-  UIBase = require('./uibase'), //BUI.Component.UIBase,
+  UIBase = require('./uibase/uibase'), //BUI.Component.UIBase,
   doc = document;
 
 /**

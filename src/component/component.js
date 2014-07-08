@@ -14,7 +14,7 @@ var Component = {};
 
 BUI.mix(Component, {
   Manager: require('./manage'),
-  UIBase: require('./uibase'),
+  UIBase: require('./uibase/uibase'),
   View: require('./view'),
   Controller: require('./controller')
 });

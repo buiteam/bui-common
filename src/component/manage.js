@@ -9,6 +9,9 @@
 
 //控件类的管理器
 
+
+var $ = require('jquery');
+
 var uis = {
   // 不带前缀 prefixCls
   /*

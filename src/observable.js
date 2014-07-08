@@ -3,6 +3,8 @@
  * @ignore
  */
 
+var $ = require('jquery');
+
 var BUI = require('./util');
 /**
  * @private

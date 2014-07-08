@@ -11,14 +11,15 @@
  * @singleton
  */
 
+var $ = require('jquery');
+
 //兼容jquery 1.6以下
 (function($) {
   if ($.fn) {
     $.fn.on = $.fn.on || $.fn.bind;
     $.fn.off = $.fn.off || $.fn.unbind;
   }
-
-})(jQuery);
+})($);
 /**
  * @ignore
  * 处于效率的目的，复制属性
@@ -68,21 +69,15 @@ var win = window,
   PARSER = 'PARSER',
   GUID_DEFAULT = 'guid';
 
+window.BUI = window.BUI || {};
+
 $.extend(BUI, {
   /**
    * 版本号
    * @memberOf BUI
    * @type {Number}
    */
-  version: 1.0,
-
-  /**
-   * 子版本号
-   * @type {Number}
-   */
-  subVersion: 96,
-
-
+  version: '1.1.0',
   /**
    * 是否为函数
    * @param  {*} fn 对象
