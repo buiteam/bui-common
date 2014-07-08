@@ -4,7 +4,8 @@
  * @ignore
  */
 
-var CLS_PREFIX = BUI.prefix + 'stdmod-';
+var $ = require('jquery'),
+  CLS_PREFIX = BUI.prefix + 'stdmod-';
 
 
 /**

@@ -4,7 +4,8 @@
  */
 
 
-var Selection = require('./selection');
+var $ = require('jquery'),
+  Selection = require('./selection');
 
 /**
  * 列表一类的控件的扩展，list,menu,grid都是可以从此类扩展

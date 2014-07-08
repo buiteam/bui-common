@@ -3,6 +3,8 @@
  * @ignore
  */
 
+var $ = require('jquery');
+
 /**
  * 处理自动显示控件的扩展，一般用于显示menu,picker,tip等
  * @class BUI.Component.UIBase.AutoShow

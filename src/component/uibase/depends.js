@@ -4,7 +4,8 @@
  */
 
 
-var regexp = /^#(.*):(.*)$/,
+var $ = require('jquery'),
+  regexp = /^#(.*):(.*)$/,
   Manager = require('../manage');
 
 //获取依赖信息

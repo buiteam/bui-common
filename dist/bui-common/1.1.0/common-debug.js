@@ -5340,14 +5340,15 @@ define("bui-common/1.1.0/src/component/uibase/base-debug", ["jquery/1.9.1/jquery
   });
   module.exports = UIBase;
 });
-define("bui-common/1.1.0/src/component/uibase/align-debug", ["bui-common/1.1.0/src/ua-debug", "jquery/1.9.1/jquery-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/align-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/ua-debug"], function(require, exports, module) {
   /**
    * @fileOverview 跟指定的元素项对齐的方式
    * @author yiminghe@gmail.com
    * copied by dxq613@gmail.com
    * @ignore
    */
-  var UA = require("bui-common/1.1.0/src/ua-debug"),
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    UA = require("bui-common/1.1.0/src/ua-debug"),
     CLS_ALIGN_PREFIX = 'x-align-',
     win = window;
   // var ieMode = document.documentMode || UA.ie;
@@ -5757,11 +5758,12 @@ define("bui-common/1.1.0/src/component/uibase/align-debug", ["bui-common/1.1.0/s
   };
   module.exports = Align;
 });
-define("bui-common/1.1.0/src/component/uibase/autoshow-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/autoshow-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview click，focus,hover等引起控件显示，并且定位
    * @ignore
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   /**
    * 处理自动显示控件的扩展，一般用于显示menu,picker,tip等
    * @class BUI.Component.UIBase.AutoShow
@@ -6002,13 +6004,14 @@ define("bui-common/1.1.0/src/component/uibase/autoshow-debug", [], function(requ
   };
   module.exports = autoShow;
 });
-define("bui-common/1.1.0/src/component/uibase/autohide-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/autohide-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview 点击或移出控件外部，控件隐藏
    * @author dxq613@gmail.com
    * @ignore
    */
-  var wrapBehavior = BUI.wrapBehavior,
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    wrapBehavior = BUI.wrapBehavior,
     getWrapBehavior = BUI.getWrapBehavior;
 
   function isExcept(self, elem) {
@@ -6182,13 +6185,14 @@ define("bui-common/1.1.0/src/component/uibase/autohide-debug", [], function(requ
   };
   module.exports = autoHide;
 });
-define("bui-common/1.1.0/src/component/uibase/close-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/close-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview close 关闭或隐藏控件
    * @author yiminghe@gmail.com
    * copied and modified by dxq613@gmail.com
    * @ignore
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   var CLS_PREFIX = BUI.prefix + 'ext-';
 
   function getCloseRenderBtn(self) {
@@ -6448,13 +6452,14 @@ define("bui-common/1.1.0/src/component/uibase/collapsable-debug", [], function(r
   collapsable.View = collapsableView;
   module.exports = collapsable;
 });
-define("bui-common/1.1.0/src/component/uibase/drag-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/drag-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview 拖拽
    * @author by dxq613@gmail.com
    * @ignore
    */
-  var dragBackId = BUI.guid('drag');
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    dragBackId = BUI.guid('drag');
   /**
    * 拖拽控件的扩展
    * <pre><code>
@@ -6666,12 +6671,13 @@ define("bui-common/1.1.0/src/component/uibase/drag-debug", [], function(require,
   };
   module.exports = drag;
 });
-define("bui-common/1.1.0/src/component/uibase/keynav-debug", ["bui-common/1.1.0/src/keycode-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/keynav-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/keycode-debug"], function(require, exports, module) {
   /**
    * @fileOverview 使用键盘导航
    * @ignore
    */
-  var KeyCode = require("bui-common/1.1.0/src/keycode-debug"),
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    KeyCode = require("bui-common/1.1.0/src/keycode-debug"),
     wrapBehavior = BUI.wrapBehavior,
     getWrapBehavior = BUI.getWrapBehavior;
   /**
@@ -6811,12 +6817,13 @@ define("bui-common/1.1.0/src/component/uibase/keynav-debug", ["bui-common/1.1.0/
   };
   module.exports = keyNav;
 });
-define("bui-common/1.1.0/src/component/uibase/list-debug", ["bui-common/1.1.0/src/component/uibase/selection-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/list-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/component/uibase/selection-debug"], function(require, exports, module) {
   /**
    * @fileOverview 所有子元素都是同一类的集合
    * @ignore
    */
-  var Selection = require("bui-common/1.1.0/src/component/uibase/selection-debug");
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    Selection = require("bui-common/1.1.0/src/component/uibase/selection-debug");
   /**
    * 列表一类的控件的扩展，list,menu,grid都是可以从此类扩展
    * @class BUI.Component.UIBase.List
@@ -7503,14 +7510,15 @@ define("bui-common/1.1.0/src/component/uibase/listitem-debug", [], function(requ
   listItem.View = listItemView;
   module.exports = listItem;
 });
-define("bui-common/1.1.0/src/component/uibase/mask-debug", ["bui-common/1.1.0/src/ua-debug", "jquery/1.9.1/jquery-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/mask-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/ua-debug"], function(require, exports, module) {
   /**
    * @fileOverview mask 遮罩层
    * @author yiminghe@gmail.com
    * copied and modified by dxq613@gmail.com
    * @ignore
    */
-  var UA = require("bui-common/1.1.0/src/ua-debug"),
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    UA = require("bui-common/1.1.0/src/ua-debug"),
     /**
      * 每组相同 prefixCls 的 position 共享一个遮罩
      * @ignore
@@ -7704,13 +7712,14 @@ define("bui-common/1.1.0/src/component/uibase/mask-debug", ["bui-common/1.1.0/sr
   Mask.View = MaskView;
   module.exports = Mask;
 });
-define("bui-common/1.1.0/src/component/uibase/position-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/position-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview 位置，控件绝对定位
    * @author yiminghe@gmail.com
    * copied by dxq613@gmail.com
    * @ignore
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   /**
    * 对齐的视图类
    * @class BUI.Component.UIBase.PositionView
@@ -7981,12 +7990,13 @@ define("bui-common/1.1.0/src/component/uibase/position-debug", [], function(requ
   Position.View = PositionView;
   module.exports = Position;
 });
-define("bui-common/1.1.0/src/component/uibase/selection-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/selection-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview 单选或者多选
    * @author  dxq613@gmail.com
    * @ignore
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   var SINGLE_SELECTED = 'single';
   /**
    * @class BUI.Component.UIBase.Selection
@@ -8379,13 +8389,14 @@ define("bui-common/1.1.0/src/component/uibase/selection-debug", [], function(req
   }
   module.exports = selection;
 });
-define("bui-common/1.1.0/src/component/uibase/stdmod-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/stdmod-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview
    * 控件包含头部（head)、内容(content)和尾部（foot)
    * @ignore
    */
-  var CLS_PREFIX = BUI.prefix + 'stdmod-';
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    CLS_PREFIX = BUI.prefix + 'stdmod-';
   /**
    * 标准模块组织的视图类
    * @class BUI.Component.UIBase.StdModView
@@ -8897,12 +8908,13 @@ define("bui-common/1.1.0/src/component/uibase/decorate-debug", ["jquery/1.9.1/jq
   };
   module.exports = decorate;
 });
-define("bui-common/1.1.0/src/component/uibase/tpl-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/tpl-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview 控件模板
    * @author dxq613@gmail.com
    * @ignore
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   /**
    * @private
    * 控件模板扩展类的渲染类(view)
@@ -9080,11 +9092,12 @@ define("bui-common/1.1.0/src/component/uibase/tpl-debug", [], function(require, 
   tpl.View = tplView;
   module.exports = tpl;
 });
-define("bui-common/1.1.0/src/component/uibase/childcfg-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/childcfg-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview 子控件的默认配置项
    * @ignore
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   /**
    * @class BUI.Component.UIBase.ChildCfg
    * 子控件默认配置项的扩展类
@@ -9333,12 +9346,13 @@ define("bui-common/1.1.0/src/component/uibase/bindable-debug", [], function(requ
   });
   module.exports = bindable;
 });
-define("bui-common/1.1.0/src/component/uibase/depends-debug", ["bui-common/1.1.0/src/component/manage-debug", "jquery/1.9.1/jquery-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/depends-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/component/manage-debug"], function(require, exports, module) {
   /**
    * @fileOverview 依赖扩展，用于观察者模式中的观察者
    * @ignore
    */
-  var regexp = /^#(.*):(.*)$/,
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    regexp = /^#(.*):(.*)$/,
     Manager = require("bui-common/1.1.0/src/component/manage-debug");
   //获取依赖信息
   function getDepend(name) {

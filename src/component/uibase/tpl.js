@@ -4,6 +4,8 @@
  * @ignore
  */
 
+var $ = require('jquery');
+
 /**
  * @private
  * 控件模板扩展类的渲染类(view)

@@ -4,7 +4,8 @@
  */
 
 
-  var KeyCode = require('../../keycode'),
+  var $ = require('jquery'),
+    KeyCode = require('../../keycode'),
     wrapBehavior = BUI.wrapBehavior,
     getWrapBehavior = BUI.getWrapBehavior;
   /**

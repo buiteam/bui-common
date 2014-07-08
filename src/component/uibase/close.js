@@ -6,6 +6,9 @@
  */
 
 
+var $ = require('jquery');
+
+
 var CLS_PREFIX = BUI.prefix + 'ext-';
 
 function getCloseRenderBtn(self) {

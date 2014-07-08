@@ -6,7 +6,8 @@
 
 
 
-var dragBackId = BUI.guid('drag');
+var $ = require('jquery'),
+  dragBackId = BUI.guid('drag');
 
 /**
  * 拖拽控件的扩展

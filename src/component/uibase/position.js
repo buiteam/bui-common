@@ -5,6 +5,8 @@
  * @ignore
  */
 
+var $ = require('jquery');
+
 /**
  * 对齐的视图类
  * @class BUI.Component.UIBase.PositionView

@@ -4,7 +4,8 @@
  * @ignore
  */
 
-var wrapBehavior = BUI.wrapBehavior,
+var $ = require('jquery'),
+  wrapBehavior = BUI.wrapBehavior,
   getWrapBehavior = BUI.getWrapBehavior;
 
 function isExcept(self, elem) {

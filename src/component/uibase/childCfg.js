@@ -3,6 +3,7 @@
  * @ignore
  */
 
+var $ = require('jquery');
 
 /**
  * @class BUI.Component.UIBase.ChildCfg

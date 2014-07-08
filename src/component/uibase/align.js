@@ -6,7 +6,8 @@
  */
 
 
-var UA = require('../../ua'),
+var $ = require('jquery'),
+  UA = require('../../ua'),
   CLS_ALIGN_PREFIX ='x-align-',
   win = window;
 

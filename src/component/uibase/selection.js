@@ -3,6 +3,7 @@
  * @author  dxq613@gmail.com
  * @ignore
  */
+var $ = require('jquery');
 var SINGLE_SELECTED = 'single';
 
 /**

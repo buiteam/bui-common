@@ -6,7 +6,8 @@
  */
 
 
-var UA = require('../../ua'),
+var $ = require('jquery'),
+  UA = require('../../ua'),
 
   /**
    * 每组相同 prefixCls 的 position 共享一个遮罩
