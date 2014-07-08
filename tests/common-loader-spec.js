@@ -37,7 +37,7 @@ var $ = require('jquery'),
         setTimeout(function(){
           expect(el.find('p').length).not.to.be(0);
           done();
-        }, 500);
+        }, 200);
 
       });
 
@@ -51,7 +51,7 @@ var $ = require('jquery'),
         setTimeout(function(){
           expect(el.find('p').length).not.to.be(0);
           done();
-        }, 500);
+        }, 200);
       });
     });
 
@@ -72,7 +72,7 @@ var $ = require('jquery'),
           expect(control.get('children').length).not.to.be(0);
           expect(control.get('children')[0].isController).to.be(true);
           done();
-        }, 500);
+        }, 200);
       });
 
       it('测试加载自定义属性', function(done){
@@ -89,7 +89,7 @@ var $ = require('jquery'),
         setTimeout(function(){
           expect(control.get('items').length).not.to.be(0);
           done();
-        }, 500);
+        }, 200);
       });
 
       it('测试回调函数',function(done){
@@ -107,7 +107,7 @@ var $ = require('jquery'),
         setTimeout(function(){
           expect(callback.called).to.be(true);
           done();
-        }, 500);
+        }, 200);
       });
 
       it('测试出错',function(){
@@ -130,7 +130,7 @@ var $ = require('jquery'),
         setTimeout(function(){
           expect(control.get('el').text()).to.be(customText);
           done();
-        }, 500);
+        }, 200);
       });
     });
 
