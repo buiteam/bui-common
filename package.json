@@ -15,10 +15,11 @@
   "licenses": "MIT",
   "spm": {
     "main": "common.js",
-    "dependencies": {},
+    "dependencies": {
+      "jquery": "1.9.1"
+    },
     "devDependencies": {
       "expect.js": "0.3.1",
-      "jquery": "1.9.1",
       "sinon": "1.6.0"
     },
     "engines": {

@@ -1,4 +1,4 @@
-define("bui-common/1.1.0/common-debug", ["bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug", "bui-common/1.1.0/src/json-debug", "bui-common/1.1.0/src/date-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/keycode-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/component/component-debug", "bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/component/uibase/uibase-debug", "bui-common/1.1.0/src/component/view-debug", "bui-common/1.1.0/src/component/controller-debug", "bui-common/1.1.0/src/component/uibase/base-debug", "bui-common/1.1.0/src/component/uibase/align-debug", "bui-common/1.1.0/src/component/uibase/autoshow-debug", "bui-common/1.1.0/src/component/uibase/autohide-debug", "bui-common/1.1.0/src/component/uibase/close-debug", "bui-common/1.1.0/src/component/uibase/collapsable-debug", "bui-common/1.1.0/src/component/uibase/drag-debug", "bui-common/1.1.0/src/component/uibase/keynav-debug", "bui-common/1.1.0/src/component/uibase/list-debug", "bui-common/1.1.0/src/component/uibase/listitem-debug", "bui-common/1.1.0/src/component/uibase/mask-debug", "bui-common/1.1.0/src/component/uibase/position-debug", "bui-common/1.1.0/src/component/uibase/selection-debug", "bui-common/1.1.0/src/component/uibase/stdmod-debug", "bui-common/1.1.0/src/component/uibase/decorate-debug", "bui-common/1.1.0/src/component/uibase/tpl-debug", "bui-common/1.1.0/src/component/uibase/childcfg-debug", "bui-common/1.1.0/src/component/uibase/bindable-debug", "bui-common/1.1.0/src/component/uibase/depends-debug", "bui-common/1.1.0/src/component/loader-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/common-debug", ["bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug", "bui-common/1.1.0/src/json-debug", "bui-common/1.1.0/src/date-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/keycode-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/component/component-debug", "jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/component/uibase/uibase-debug", "bui-common/1.1.0/src/component/view-debug", "bui-common/1.1.0/src/component/controller-debug", "bui-common/1.1.0/src/component/uibase/base-debug", "bui-common/1.1.0/src/component/uibase/align-debug", "bui-common/1.1.0/src/component/uibase/autoshow-debug", "bui-common/1.1.0/src/component/uibase/autohide-debug", "bui-common/1.1.0/src/component/uibase/close-debug", "bui-common/1.1.0/src/component/uibase/collapsable-debug", "bui-common/1.1.0/src/component/uibase/drag-debug", "bui-common/1.1.0/src/component/uibase/keynav-debug", "bui-common/1.1.0/src/component/uibase/list-debug", "bui-common/1.1.0/src/component/uibase/listitem-debug", "bui-common/1.1.0/src/component/uibase/mask-debug", "bui-common/1.1.0/src/component/uibase/position-debug", "bui-common/1.1.0/src/component/uibase/selection-debug", "bui-common/1.1.0/src/component/uibase/stdmod-debug", "bui-common/1.1.0/src/component/uibase/decorate-debug", "bui-common/1.1.0/src/component/uibase/tpl-debug", "bui-common/1.1.0/src/component/uibase/childcfg-debug", "bui-common/1.1.0/src/component/uibase/bindable-debug", "bui-common/1.1.0/src/component/uibase/depends-debug", "bui-common/1.1.0/src/component/loader-debug"], function(require, exports, module) {
   var BUI = require("bui-common/1.1.0/src/util-debug");
   BUI.mix(BUI, {
     UA: require("bui-common/1.1.0/src/ua-debug"),
@@ -12,7 +12,7 @@ define("bui-common/1.1.0/common-debug", ["bui-common/1.1.0/src/util-debug", "bui
   });
   module.exports = BUI;
 });
-define("bui-common/1.1.0/src/util-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/util-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @class BUI
    * 控件库的工具方法，这些工具方法直接绑定到BUI对象上
@@ -25,13 +25,14 @@ define("bui-common/1.1.0/src/util-debug", [], function(require, exports, module)
    * </code></pre>
    * @singleton
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   //兼容jquery 1.6以下
   (function($) {
     if ($.fn) {
       $.fn.on = $.fn.on || $.fn.bind;
       $.fn.off = $.fn.off || $.fn.unbind;
     }
-  })(jQuery);
+  })($);
   /**
    * @ignore
    * 处于效率的目的，复制属性
@@ -77,18 +78,14 @@ define("bui-common/1.1.0/src/util-debug", [], function(require, exports, module)
     ATTRS = 'ATTRS',
     PARSER = 'PARSER',
     GUID_DEFAULT = 'guid';
+  window.BUI = window.BUI || {};
   $.extend(BUI, {
     /**
      * 版本号
      * @memberOf BUI
      * @type {Number}
      */
-    version: 1.0,
-    /**
-     * 子版本号
-     * @type {Number}
-     */
-    subVersion: 96,
+    version: '1.1.0',
     /**
      * 是否为函数
      * @param  {*} fn 对象
@@ -665,12 +662,14 @@ define("bui-common/1.1.0/src/util-debug", [], function(require, exports, module)
   };
   module.exports = BUI;
 });
-define("bui-common/1.1.0/src/ua-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/ua-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview UA,jQuery的 $.browser 对象非常难使用
    * @ignore
    * @author dxq613@gmail.com
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
+
   function numberify(s) {
     var c = 0;
     // convert '1.2.3.4' to 1.234
@@ -725,11 +724,12 @@ define("bui-common/1.1.0/src/ua-debug", [], function(require, exports, module) {
   })();
   module.exports = UA;
 });
-define("bui-common/1.1.0/src/json-debug", ["bui-common/1.1.0/src/ua-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/json-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/ua-debug"], function(require, exports, module) {
   /**
    * @fileOverview 由于jQuery只有 parseJSON ，没有stringify所以使用过程不方便
    * @ignore
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   var win = window,
     UA = require("bui-common/1.1.0/src/ua-debug"),
     JSON = win.JSON;
@@ -1369,7 +1369,7 @@ define("bui-common/1.1.0/src/date-debug", [], function(require, exports, module)
   };
   module.exports = DateUtil;
 });
-define("bui-common/1.1.0/src/array-debug", ["bui-common/1.1.0/src/util-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/array-debug", ["bui-common/1.1.0/src/util-debug", "jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview 数组帮助类
    * @ignore
@@ -1771,11 +1771,12 @@ define("bui-common/1.1.0/src/keycode-debug", [], function(require, exports, modu
   };
   module.exports = keyCode;
 });
-define("bui-common/1.1.0/src/observable-debug", ["bui-common/1.1.0/src/util-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/observable-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/util-debug"], function(require, exports, module) {
   /**
    * @fileOverview 观察者模式实现事件
    * @ignore
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   var BUI = require("bui-common/1.1.0/src/util-debug");
   /**
    * @private
@@ -2140,13 +2141,14 @@ define("bui-common/1.1.0/src/observable-debug", ["bui-common/1.1.0/src/util-debu
   });
   module.exports = Observable;
 });
-define("bui-common/1.1.0/src/base-debug", ["bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/base-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug"], function(require, exports, module) {
   /**
    * @fileOverview  Base UI控件的最基础的类
    * @author yiminghe@gmail.com
    * copied by dxq613@gmail.com
    * @ignore
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   var INVALID = {},
     Observable = require("bui-common/1.1.0/src/observable-debug");
 
@@ -2586,7 +2588,7 @@ define("bui-common/1.1.0/src/base-debug", ["bui-common/1.1.0/src/observable-debu
   });
   module.exports = Base;
 });
-define("bui-common/1.1.0/src/component/component-debug", ["bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/component/uibase/uibase-debug", "bui-common/1.1.0/src/component/view-debug", "bui-common/1.1.0/src/component/controller-debug", "bui-common/1.1.0/src/component/uibase/base-debug", "bui-common/1.1.0/src/component/uibase/align-debug", "bui-common/1.1.0/src/component/uibase/autoshow-debug", "bui-common/1.1.0/src/component/uibase/autohide-debug", "bui-common/1.1.0/src/component/uibase/close-debug", "bui-common/1.1.0/src/component/uibase/collapsable-debug", "bui-common/1.1.0/src/component/uibase/drag-debug", "bui-common/1.1.0/src/component/uibase/keynav-debug", "bui-common/1.1.0/src/component/uibase/list-debug", "bui-common/1.1.0/src/component/uibase/listitem-debug", "bui-common/1.1.0/src/component/uibase/mask-debug", "bui-common/1.1.0/src/component/uibase/position-debug", "bui-common/1.1.0/src/component/uibase/selection-debug", "bui-common/1.1.0/src/component/uibase/stdmod-debug", "bui-common/1.1.0/src/component/uibase/decorate-debug", "bui-common/1.1.0/src/component/uibase/tpl-debug", "bui-common/1.1.0/src/component/uibase/childcfg-debug", "bui-common/1.1.0/src/component/uibase/bindable-debug", "bui-common/1.1.0/src/component/uibase/depends-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug", "bui-common/1.1.0/src/keycode-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/json-debug", "bui-common/1.1.0/src/component/loader-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/component-debug", ["bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/component/uibase/uibase-debug", "bui-common/1.1.0/src/component/view-debug", "bui-common/1.1.0/src/component/controller-debug", "jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/component/uibase/base-debug", "bui-common/1.1.0/src/component/uibase/align-debug", "bui-common/1.1.0/src/component/uibase/autoshow-debug", "bui-common/1.1.0/src/component/uibase/autohide-debug", "bui-common/1.1.0/src/component/uibase/close-debug", "bui-common/1.1.0/src/component/uibase/collapsable-debug", "bui-common/1.1.0/src/component/uibase/drag-debug", "bui-common/1.1.0/src/component/uibase/keynav-debug", "bui-common/1.1.0/src/component/uibase/list-debug", "bui-common/1.1.0/src/component/uibase/listitem-debug", "bui-common/1.1.0/src/component/uibase/mask-debug", "bui-common/1.1.0/src/component/uibase/position-debug", "bui-common/1.1.0/src/component/uibase/selection-debug", "bui-common/1.1.0/src/component/uibase/stdmod-debug", "bui-common/1.1.0/src/component/uibase/decorate-debug", "bui-common/1.1.0/src/component/uibase/tpl-debug", "bui-common/1.1.0/src/component/uibase/childcfg-debug", "bui-common/1.1.0/src/component/uibase/bindable-debug", "bui-common/1.1.0/src/component/uibase/depends-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug", "bui-common/1.1.0/src/keycode-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/json-debug", "bui-common/1.1.0/src/component/loader-debug"], function(require, exports, module) {
   /**
    * @fileOverview Component命名空间的入口文件
    * @ignore
@@ -2631,7 +2633,7 @@ define("bui-common/1.1.0/src/component/component-debug", ["bui-common/1.1.0/src/
   Component.create = create;
   module.exports = Component;
 });
-define("bui-common/1.1.0/src/component/manage-debug", [], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/manage-debug", ["jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview  Base UI控件的管理类
    * @author yiminghe@gmail.com
@@ -2639,6 +2641,7 @@ define("bui-common/1.1.0/src/component/manage-debug", [], function(require, expo
    * @ignore
    */
   //控件类的管理器
+  var $ = require("jquery/1.9.1/jquery-debug");
   var uis = {
     // 不带前缀 prefixCls
     /*
@@ -2761,7 +2764,7 @@ define("bui-common/1.1.0/src/component/manage-debug", [], function(require, expo
   };
   module.exports = Manager;
 });
-define("bui-common/1.1.0/src/component/uibase/uibase-debug", ["bui-common/1.1.0/src/component/uibase/base-debug", "bui-common/1.1.0/src/component/uibase/align-debug", "bui-common/1.1.0/src/component/uibase/autoshow-debug", "bui-common/1.1.0/src/component/uibase/autohide-debug", "bui-common/1.1.0/src/component/uibase/close-debug", "bui-common/1.1.0/src/component/uibase/collapsable-debug", "bui-common/1.1.0/src/component/uibase/drag-debug", "bui-common/1.1.0/src/component/uibase/keynav-debug", "bui-common/1.1.0/src/component/uibase/list-debug", "bui-common/1.1.0/src/component/uibase/listitem-debug", "bui-common/1.1.0/src/component/uibase/mask-debug", "bui-common/1.1.0/src/component/uibase/position-debug", "bui-common/1.1.0/src/component/uibase/selection-debug", "bui-common/1.1.0/src/component/uibase/stdmod-debug", "bui-common/1.1.0/src/component/uibase/decorate-debug", "bui-common/1.1.0/src/component/uibase/tpl-debug", "bui-common/1.1.0/src/component/uibase/childcfg-debug", "bui-common/1.1.0/src/component/uibase/bindable-debug", "bui-common/1.1.0/src/component/uibase/depends-debug", "bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug", "bui-common/1.1.0/src/keycode-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/json-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/uibase-debug", ["bui-common/1.1.0/src/component/uibase/base-debug", "bui-common/1.1.0/src/component/uibase/align-debug", "bui-common/1.1.0/src/component/uibase/autoshow-debug", "bui-common/1.1.0/src/component/uibase/autohide-debug", "bui-common/1.1.0/src/component/uibase/close-debug", "bui-common/1.1.0/src/component/uibase/collapsable-debug", "bui-common/1.1.0/src/component/uibase/drag-debug", "bui-common/1.1.0/src/component/uibase/keynav-debug", "bui-common/1.1.0/src/component/uibase/list-debug", "bui-common/1.1.0/src/component/uibase/listitem-debug", "bui-common/1.1.0/src/component/uibase/mask-debug", "bui-common/1.1.0/src/component/uibase/position-debug", "bui-common/1.1.0/src/component/uibase/selection-debug", "bui-common/1.1.0/src/component/uibase/stdmod-debug", "bui-common/1.1.0/src/component/uibase/decorate-debug", "bui-common/1.1.0/src/component/uibase/tpl-debug", "bui-common/1.1.0/src/component/uibase/childcfg-debug", "bui-common/1.1.0/src/component/uibase/bindable-debug", "bui-common/1.1.0/src/component/uibase/depends-debug", "jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug", "bui-common/1.1.0/src/keycode-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/json-debug"], function(require, exports, module) {
   /**
    * @fileOverview uibase的入口文件
    * @ignore
@@ -2801,14 +2804,15 @@ define("bui-common/1.1.0/src/component/uibase/uibase-debug", ["bui-common/1.1.0/
   });
   module.exports = UIBase;
 });
-define("bui-common/1.1.0/src/component/view-debug", ["bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/component/uibase/uibase-debug", "bui-common/1.1.0/src/component/uibase/base-debug", "bui-common/1.1.0/src/component/uibase/align-debug", "bui-common/1.1.0/src/component/uibase/autoshow-debug", "bui-common/1.1.0/src/component/uibase/autohide-debug", "bui-common/1.1.0/src/component/uibase/close-debug", "bui-common/1.1.0/src/component/uibase/collapsable-debug", "bui-common/1.1.0/src/component/uibase/drag-debug", "bui-common/1.1.0/src/component/uibase/keynav-debug", "bui-common/1.1.0/src/component/uibase/list-debug", "bui-common/1.1.0/src/component/uibase/listitem-debug", "bui-common/1.1.0/src/component/uibase/mask-debug", "bui-common/1.1.0/src/component/uibase/position-debug", "bui-common/1.1.0/src/component/uibase/selection-debug", "bui-common/1.1.0/src/component/uibase/stdmod-debug", "bui-common/1.1.0/src/component/uibase/decorate-debug", "bui-common/1.1.0/src/component/uibase/tpl-debug", "bui-common/1.1.0/src/component/uibase/childcfg-debug", "bui-common/1.1.0/src/component/uibase/bindable-debug", "bui-common/1.1.0/src/component/uibase/depends-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug", "bui-common/1.1.0/src/keycode-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/json-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/view-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/component/uibase/uibase-debug", "bui-common/1.1.0/src/component/uibase/base-debug", "bui-common/1.1.0/src/component/uibase/align-debug", "bui-common/1.1.0/src/component/uibase/autoshow-debug", "bui-common/1.1.0/src/component/uibase/autohide-debug", "bui-common/1.1.0/src/component/uibase/close-debug", "bui-common/1.1.0/src/component/uibase/collapsable-debug", "bui-common/1.1.0/src/component/uibase/drag-debug", "bui-common/1.1.0/src/component/uibase/keynav-debug", "bui-common/1.1.0/src/component/uibase/list-debug", "bui-common/1.1.0/src/component/uibase/listitem-debug", "bui-common/1.1.0/src/component/uibase/mask-debug", "bui-common/1.1.0/src/component/uibase/position-debug", "bui-common/1.1.0/src/component/uibase/selection-debug", "bui-common/1.1.0/src/component/uibase/stdmod-debug", "bui-common/1.1.0/src/component/uibase/decorate-debug", "bui-common/1.1.0/src/component/uibase/tpl-debug", "bui-common/1.1.0/src/component/uibase/childcfg-debug", "bui-common/1.1.0/src/component/uibase/bindable-debug", "bui-common/1.1.0/src/component/uibase/depends-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug", "bui-common/1.1.0/src/keycode-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/json-debug"], function(require, exports, module) {
   /**
    * @fileOverview  控件的视图层
    * @author yiminghe@gmail.com
    * copied by dxq613@gmail.com
    * @ignore
    */
-  var win = window,
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    win = window,
     Manager = require("bui-common/1.1.0/src/component/manage-debug"),
     UIBase = require("bui-common/1.1.0/src/component/uibase/uibase-debug"), //BUI.Component.UIBase,
     doc = document;
@@ -3220,7 +3224,7 @@ define("bui-common/1.1.0/src/component/view-debug", ["bui-common/1.1.0/src/compo
   };
   module.exports = View;
 });
-define("bui-common/1.1.0/src/component/controller-debug", ["bui-common/1.1.0/src/component/uibase/uibase-debug", "bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/component/view-debug", "bui-common/1.1.0/src/component/loader-debug", "bui-common/1.1.0/src/component/uibase/base-debug", "bui-common/1.1.0/src/component/uibase/align-debug", "bui-common/1.1.0/src/component/uibase/autoshow-debug", "bui-common/1.1.0/src/component/uibase/autohide-debug", "bui-common/1.1.0/src/component/uibase/close-debug", "bui-common/1.1.0/src/component/uibase/collapsable-debug", "bui-common/1.1.0/src/component/uibase/drag-debug", "bui-common/1.1.0/src/component/uibase/keynav-debug", "bui-common/1.1.0/src/component/uibase/list-debug", "bui-common/1.1.0/src/component/uibase/listitem-debug", "bui-common/1.1.0/src/component/uibase/mask-debug", "bui-common/1.1.0/src/component/uibase/position-debug", "bui-common/1.1.0/src/component/uibase/selection-debug", "bui-common/1.1.0/src/component/uibase/stdmod-debug", "bui-common/1.1.0/src/component/uibase/decorate-debug", "bui-common/1.1.0/src/component/uibase/tpl-debug", "bui-common/1.1.0/src/component/uibase/childcfg-debug", "bui-common/1.1.0/src/component/uibase/bindable-debug", "bui-common/1.1.0/src/component/uibase/depends-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug", "bui-common/1.1.0/src/keycode-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/json-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/controller-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/component/uibase/uibase-debug", "bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/component/view-debug", "bui-common/1.1.0/src/component/loader-debug", "bui-common/1.1.0/src/component/uibase/base-debug", "bui-common/1.1.0/src/component/uibase/align-debug", "bui-common/1.1.0/src/component/uibase/autoshow-debug", "bui-common/1.1.0/src/component/uibase/autohide-debug", "bui-common/1.1.0/src/component/uibase/close-debug", "bui-common/1.1.0/src/component/uibase/collapsable-debug", "bui-common/1.1.0/src/component/uibase/drag-debug", "bui-common/1.1.0/src/component/uibase/keynav-debug", "bui-common/1.1.0/src/component/uibase/list-debug", "bui-common/1.1.0/src/component/uibase/listitem-debug", "bui-common/1.1.0/src/component/uibase/mask-debug", "bui-common/1.1.0/src/component/uibase/position-debug", "bui-common/1.1.0/src/component/uibase/selection-debug", "bui-common/1.1.0/src/component/uibase/stdmod-debug", "bui-common/1.1.0/src/component/uibase/decorate-debug", "bui-common/1.1.0/src/component/uibase/tpl-debug", "bui-common/1.1.0/src/component/uibase/childcfg-debug", "bui-common/1.1.0/src/component/uibase/bindable-debug", "bui-common/1.1.0/src/component/uibase/depends-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug", "bui-common/1.1.0/src/keycode-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/json-debug"], function(require, exports, module) {
   /**
    * @fileOverview  控件可以实例化的基类
    * @ignore
@@ -3233,7 +3237,8 @@ define("bui-common/1.1.0/src/component/controller-debug", ["bui-common/1.1.0/src
    * @private
    */
   'use strict';
-  var UIBase = require("bui-common/1.1.0/src/component/uibase/uibase-debug"),
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    UIBase = require("bui-common/1.1.0/src/component/uibase/uibase-debug"),
     Manager = require("bui-common/1.1.0/src/component/manage-debug"),
     View = require("bui-common/1.1.0/src/component/view-debug"),
     Loader = require("bui-common/1.1.0/src/component/loader-debug"),
@@ -4828,13 +4833,14 @@ define("bui-common/1.1.0/src/component/controller-debug", ["bui-common/1.1.0/src
   });
   module.exports = Controller;
 });
-define("bui-common/1.1.0/src/component/uibase/base-debug", ["bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/base-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug", "bui-common/1.1.0/src/util-debug"], function(require, exports, module) {
   /**
    * @fileOverview  UI控件的流程控制
    * @author yiminghe@gmail.com
    * copied by dxq613@gmail.com
    * @ignore
    */
+  var $ = require("jquery/1.9.1/jquery-debug");
   var Manager = require("bui-common/1.1.0/src/component/manage-debug"),
     UI_SET = '_uiSet',
     ATTRS = 'ATTRS',
@@ -5334,7 +5340,7 @@ define("bui-common/1.1.0/src/component/uibase/base-debug", ["bui-common/1.1.0/sr
   });
   module.exports = UIBase;
 });
-define("bui-common/1.1.0/src/component/uibase/align-debug", ["bui-common/1.1.0/src/ua-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/align-debug", ["bui-common/1.1.0/src/ua-debug", "jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview 跟指定的元素项对齐的方式
    * @author yiminghe@gmail.com
@@ -7497,7 +7503,7 @@ define("bui-common/1.1.0/src/component/uibase/listitem-debug", [], function(requ
   listItem.View = listItemView;
   module.exports = listItem;
 });
-define("bui-common/1.1.0/src/component/uibase/mask-debug", ["bui-common/1.1.0/src/ua-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/mask-debug", ["bui-common/1.1.0/src/ua-debug", "jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview mask 遮罩层
    * @author yiminghe@gmail.com
@@ -8579,12 +8585,13 @@ define("bui-common/1.1.0/src/component/uibase/stdmod-debug", [], function(requir
   StdMod.View = StdModView;
   module.exports = StdMod;
 });
-define("bui-common/1.1.0/src/component/uibase/decorate-debug", ["bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/json-debug", "bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/decorate-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/array-debug", "bui-common/1.1.0/src/json-debug", "bui-common/1.1.0/src/component/manage-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/ua-debug"], function(require, exports, module) {
   /**
    * @fileOverview 使用wrapper
    * @ignore
    */
-  var ArrayUtil = require("bui-common/1.1.0/src/array-debug"),
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    ArrayUtil = require("bui-common/1.1.0/src/array-debug"),
     JSON = require("bui-common/1.1.0/src/json-debug"),
     prefixCls = BUI.prefix,
     FIELD_PREFIX = 'data-',
@@ -9326,7 +9333,7 @@ define("bui-common/1.1.0/src/component/uibase/bindable-debug", [], function(requ
   });
   module.exports = bindable;
 });
-define("bui-common/1.1.0/src/component/uibase/depends-debug", ["bui-common/1.1.0/src/component/manage-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/uibase/depends-debug", ["bui-common/1.1.0/src/component/manage-debug", "jquery/1.9.1/jquery-debug"], function(require, exports, module) {
   /**
    * @fileOverview 依赖扩展，用于观察者模式中的观察者
    * @ignore
@@ -9507,13 +9514,14 @@ define("bui-common/1.1.0/src/component/uibase/depends-debug", ["bui-common/1.1.0
   };
   module.exports = Depends;
 });
-define("bui-common/1.1.0/src/component/loader-debug", ["bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug"], function(require, exports, module) {
+define("bui-common/1.1.0/src/component/loader-debug", ["jquery/1.9.1/jquery-debug", "bui-common/1.1.0/src/util-debug", "bui-common/1.1.0/src/base-debug", "bui-common/1.1.0/src/observable-debug"], function(require, exports, module) {
   /**
    * @fileOverview 加载控件内容
    * @ignore
    */
   'use strict';
-  var BUI = require("bui-common/1.1.0/src/util-debug"),
+  var $ = require("jquery/1.9.1/jquery-debug"),
+    BUI = require("bui-common/1.1.0/src/util-debug"),
     Base = require("bui-common/1.1.0/src/base-debug"),
     /**
      * @class BUI.Component.Loader
