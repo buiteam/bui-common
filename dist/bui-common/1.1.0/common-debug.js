@@ -9834,7 +9834,7 @@ define("bui-common/1.1.0/src/component/loader-debug", ["jquery/1.9.1/jquery-debu
         target = _self.get('target'),
         loadMask = _self.get('loadMask');
       if (target && loadMask) {
-        BUI.use('bui/mask', function(Mask) {
+        require.async('bui-mask', function(Mask) {
           var cfg = $.isPlainObject(loadMask) ? loadMask : {};
           loadMask = new Mask.LoadMask(BUI.mix({
             el: target.get('el')
