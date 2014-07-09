@@ -49,7 +49,7 @@ var ArrayUtil = {
    * @return {Boolean} 是否存在于数组中
    */
   contains: function(value, array) {
-    return BUI.Array.indexOf(value, array) >= 0;
+    return ArrayUtil.indexOf(value, array) >= 0;
   },
   /**
    * 遍历数组或者对象
@@ -93,7 +93,7 @@ var ArrayUtil = {
    */
   filter: function(array, func) {
     var result = [];
-    BUI.Array.each(array, function(value, index) {
+    ArrayUtil.each(array, function(value, index) {
       if (func(value, index)) {
         result.push(value);
       }
@@ -108,7 +108,7 @@ var ArrayUtil = {
    */
   map: function(array, func) {
     var result = [];
-    BUI.Array.each(array, function(value, index) {
+    ArrayUtil.each(array, function(value, index) {
       result.push(func(value, index));
     });
     return result;
@@ -120,7 +120,7 @@ var ArrayUtil = {
    * @return {*}  符合条件的数据
    */
   find: function(array, func) {
-    var i = BUI.Array.findIndex(array, func);
+    var i = ArrayUtil.findIndex(array, func);
     return i < 0 ? null : array[i];
   },
   /**
@@ -131,7 +131,7 @@ var ArrayUtil = {
    */
   findIndex: function(array, func) {
     var result = -1;
-    BUI.Array.each(array, function(value, index) {
+    ArrayUtil.each(array, function(value, index) {
       if (func(value, index)) {
         result = index;
         return false;
@@ -163,7 +163,7 @@ var ArrayUtil = {
    * @param  {Number} index 位置
    */
   addAt: function(array, value, index) {
-    BUI.Array.splice(array, index, 0, value);
+    ArrayUtil.splice(array, index, 0, value);
   },
   /**
    * 清空数组
@@ -185,10 +185,10 @@ var ArrayUtil = {
    * @return {Boolean}   是否移除成功
    */
   remove: function(array, value) {
-    var i = BUI.Array.indexOf(value, array);
+    var i = ArrayUtil.indexOf(value, array);
     var rv;
     if ((rv = i >= 0)) {
-      BUI.Array.removeAt(array, i);
+      ArrayUtil.removeAt(array, i);
     }
     return rv;
   },
@@ -199,7 +199,7 @@ var ArrayUtil = {
    * @return {Boolean}   是否移除成功
    */
   removeAt: function(array, index) {
-    return BUI.Array.splice(array, index, 1).length == 1;
+    return ArrayUtil.splice(array, index, 1).length == 1;
   },
   /**
    * @private
@@ -215,7 +215,7 @@ var ArrayUtil = {
    * @private
    */
   splice: function(arr, index, howMany, var_args) {
-    return Array.prototype.splice.apply(arr, BUI.Array.slice(arguments, 1))
+    return Array.prototype.splice.apply(arr, ArrayUtil.slice(arguments, 1))
   }
 
 };

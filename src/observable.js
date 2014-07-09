@@ -5,7 +5,8 @@
 
 var $ = require('jquery');
 
-var BUI = require('./util');
+var BUI = require('./util'),
+  ArrayUtil = require('./array');
 /**
  * @private
  * @class BUI.Observable.Callbacks
@@ -38,7 +39,7 @@ BUI.augment(Callbacks, {
    */
   remove: function(fn) {
     var functions = this._functions;
-    index = BUI.Array.indexOf(fn, functions);
+    index = ArrayUtil.indexOf(fn, functions);
     if (index >= 0) {
       functions.splice(index, 1);
     }
@@ -71,7 +72,7 @@ BUI.augment(Callbacks, {
   fireWith: function(scope, args) {
     var _self = this,
       rst;
-    if (this._paused) {
+    if (_self._paused) {
       return;
     }
     BUI.each(_self._functions, function(fn) {
@@ -183,7 +184,7 @@ BUI.augment(Observable, {
   },
   //事件是否支持冒泡
   _isBubbles: function(eventType) {
-    return BUI.Array.indexOf(eventType, this._bubblesEvents) >= 0;
+    return ArrayUtil.indexOf(eventType, this._bubblesEvents) >= 0;
   },
   /**
    * 添加冒泡的对象
@@ -204,13 +205,13 @@ BUI.augment(Observable, {
       eventMap = _self._eventMap;
 
     function addEvent(eventType) {
-      if (BUI.Array.indexOf(eventType, existEvents) === -1) {
+      if (ArrayUtil.indexOf(eventType, existEvents) === -1) {
         eventMap[eventType] = getCallbacks();
         existEvents.push(eventType);
       }
     }
     if (BUI.isArray(events)) {
-      $.each(events, function(index, eventType) {
+      BUI.each(events, function(eventType) {
         addEvent(eventType);
       });
     } else {

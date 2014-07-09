@@ -3,10 +3,9 @@
  * @ignore
  */
 
-var $ = require('jquery');
-
-var win = window,
+var $ = require('jquery'),
   UA = require('./ua'),
+  win = window,
   JSON = win.JSON;
 
 // ie 8.0.7600.16315@win7 json 有问题

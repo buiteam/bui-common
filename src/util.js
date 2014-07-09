@@ -585,7 +585,7 @@ $.extend(BUI, {
  * @class BUI.FormHelper
  * @singleton
  */
-var formHelper = BUI.FormHelper = {
+var FormHelper = {
   /**
    * 将表单格式化成键值对形式
    * @param {HTMLElement} form 表单
@@ -679,5 +679,8 @@ var formHelper = BUI.FormHelper = {
     return BUI.FormHelper.serializeToObject(form)[fieldName];
   }
 };
+
+
+BUI.FormHelper = FormHelper;
 
 module.exports = BUI;
