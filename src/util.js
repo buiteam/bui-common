@@ -440,7 +440,7 @@ $.extend(BUI, {
    * @return {[type]} [description]
    */
   unparam: function(str){
-    if (typeof str != 'string' || !(str = $.trim(decodeURIComponent(str)))) {
+    if (typeof str != 'string' || !(str = $.trim(str))) {
       return {};
     }
     var pairs = str.split('&'),
@@ -448,7 +448,7 @@ $.extend(BUI, {
       rst = {};
     for(var i = pairs.length - 1; i >= 0; i--) {
       pairsArr = pairs[i].split('=');
-      rst[pairsArr[0]] = pairsArr[1];
+      rst[pairsArr[0]] = decodeURIComponent(pairsArr[1]);
     }
     return rst;
   },
