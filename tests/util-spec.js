@@ -592,6 +592,23 @@ describe('uitl测试', function(){
     });
     
   });
+
+  describe('测试unparam', function(){
+    it('测试转换', function(){
+      var str = 'a=1&b=2';
+      expect(BUI.unparam(str)).to.eql({a:1,b:2});
+    });
+
+    it('存在中文', function(){
+      var str = 'a=中文';
+      expect(BUI.unparam(str)).to.eql({a:'中文'});
+    });
+
+    it('中文转义', function() {
+      var str = 'a=%E4%B8%AD%E6%96%87';
+      expect(BUI.unparam(str)).to.eql({a:'中文'});
+    })
+  });
 });
 /**/
 /**/
