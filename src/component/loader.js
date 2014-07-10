@@ -327,7 +327,7 @@ BUI.augment(Loader, {
       target = _self.get('target'),
       loadMask = _self.get('loadMask');
     if (target && loadMask) {
-      require.async('bui-mask', function(Mask) {
+      require.async('bui-mask/1.1.0/index', function(Mask) {
         var cfg = $.isPlainObject(loadMask) ? loadMask : {};
         loadMask = new Mask.LoadMask(BUI.mix({
           el: target.get('el')
