@@ -487,7 +487,7 @@ describe('uitl测试', function(){
         xclass : 'classb'
       });
 
-      var node = $('<ol><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ol>'),
+      var node = $('<ol><li>1</li><li class="bui-classb-disabled">2</li><li>3</li><li>4</li><li>5</li></ol>').appendTo('body'),
 
         control = new AClass({
           srcNode : node,

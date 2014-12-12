@@ -1686,6 +1686,11 @@ var Controller = UIBase.extend([UIBase.Decorate, UIBase.Tpl, UIBase.ChildCfg, UI
         return false;
       }
       return true;
+    },
+    disabled: function(el){
+      var _self = this,
+        cls = _self.get('prefixCls') + _self.get('xclass') + '-disabled';
+      return el.hasClass(cls);
     }
   }
 }, {
