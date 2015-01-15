@@ -1,21 +1,21 @@
-define("bui-common/1.1.2/common-debug", ["jquery"], function(require, exports, module){
-var BUI = require("bui-common/1.1.2/src/util-debug");
+define("bui-common/1.1.3/common-debug", ["jquery"], function(require, exports, module){
+var BUI = require("bui-common/1.1.3/src/util-debug");
 
 BUI.mix(BUI, {
-  UA: require("bui-common/1.1.2/src/ua-debug"),
-  JSON: require("bui-common/1.1.2/src/json-debug"),
-  Date: require("bui-common/1.1.2/src/date-debug"),
-  Array: require("bui-common/1.1.2/src/array-debug"),
-  KeyCode: require("bui-common/1.1.2/src/keycode-debug"),
-  Observable: require("bui-common/1.1.2/src/observable-debug"),
-  Base: require("bui-common/1.1.2/src/base-debug"),
-  Component: require("bui-common/1.1.2/src/component/component-debug")
+  UA: require("bui-common/1.1.3/src/ua-debug"),
+  JSON: require("bui-common/1.1.3/src/json-debug"),
+  Date: require("bui-common/1.1.3/src/date-debug"),
+  Array: require("bui-common/1.1.3/src/array-debug"),
+  KeyCode: require("bui-common/1.1.3/src/keycode-debug"),
+  Observable: require("bui-common/1.1.3/src/observable-debug"),
+  Base: require("bui-common/1.1.3/src/base-debug"),
+  Component: require("bui-common/1.1.3/src/component/component-debug")
 });
 
 module.exports = BUI;
 
 });
-define("bui-common/1.1.2/src/util-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/util-debug", ["jquery"], function(require, exports, module){
 /**
  * @class BUI
  * 控件库的工具方法，这些工具方法直接绑定到BUI对象上
@@ -612,6 +612,76 @@ $.extend(BUI, {
    */
   getControl: function(id) {
     return BUI.Component.Manager.getComponent(id);
+  },
+  /**
+   * 设置对象的属性，支持深度设置属性值
+   *
+   *   @example
+   *   BUI.setValue(obj,'a.b.c',value) //obj.a.b.c = value;
+   * @param {Object} obj   对象
+   * @param {String} name  名称
+   * @param {String} value 值
+   */
+  setValue: function(obj,name,value){
+    if(!obj && !name){
+      return obj;
+    }
+    var arr = name.split('.'),
+      curObj = obj,
+      len = arr.length;
+
+    for (var i = 0; i < len; i++){
+      if(!curObj || !BUI.isObject(curObj)){
+        break;
+      }
+      var subName = arr[i];
+      if (i === len - 1){
+        curObj[subName] = value;
+        break;
+      }
+      if (!curObj[subName]) {
+        curObj[subName] = {};
+      }
+      curObj = curObj[subName];
+    }
+
+    return obj;
+  },
+  /**
+   * 设置对象的属性，支持深度设置属性值
+   *
+   *   @example
+   *   BUI.getValue(obj,'a.b.c') //return obj.a.b.c;
+   * @param {Object} obj   对象
+   * @param {String} name  名称
+   * @param {String} value 值
+   */
+  getValue: function(obj,name){
+    if(!obj && !name){
+      return null;
+    }
+
+    var arr = name.split('.'),
+      curObj = obj,
+      len = arr.length,
+      value = null;
+
+    for (var i = 0; i < len; i++){
+      if(!curObj || !BUI.isObject(curObj)){
+        break;
+      }
+      var subName = arr[i];
+      if (i === len - 1){
+        value = curObj[subName];
+        break;
+      }
+      if (!curObj[subName]) {
+        break;
+      }
+      curObj = curObj[subName];
+    }
+
+    return value;
   }
 
 });
@@ -722,7 +792,7 @@ BUI.FormHelper = FormHelper;
 module.exports = BUI;
 
 });
-define("bui-common/1.1.2/src/ua-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/ua-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview UA,jQuery的 $.browser 对象非常难使用
  * @ignore
@@ -789,14 +859,14 @@ var UA = $.UA || (function() {
 module.exports = UA;
 
 });
-define("bui-common/1.1.2/src/json-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/json-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 由于jQuery只有 parseJSON ，没有stringify所以使用过程不方便
  * @ignore
  */
 
 var $ = require('jquery'),
-  UA = require("bui-common/1.1.2/src/ua-debug"),
+  UA = require("bui-common/1.1.3/src/ua-debug"),
   win = window,
   JSON = win.JSON;
 
@@ -1072,7 +1142,7 @@ var JSON = {
 module.exports = JSON;
 
 });
-define("bui-common/1.1.2/src/date-debug", [], function(require, exports, module){
+define("bui-common/1.1.3/src/date-debug", [], function(require, exports, module){
 /*
  * @fileOverview Date Format 1.2.3
  * @ignore
@@ -1533,7 +1603,7 @@ var DateUtil = {
 module.exports = DateUtil;
 
 });
-define("bui-common/1.1.2/src/array-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/array-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 数组帮助类
  * @ignore
@@ -1546,7 +1616,7 @@ define("bui-common/1.1.2/src/array-debug", ["jquery"], function(require, exports
  */
 
 
-var BUI = require("bui-common/1.1.2/src/util-debug");
+var BUI = require("bui-common/1.1.3/src/util-debug");
 /**
  * @class BUI.Array
  * 数组帮助类
@@ -1759,7 +1829,7 @@ var ArrayUtil = {
 module.exports = ArrayUtil;
 
 });
-define("bui-common/1.1.2/src/keycode-debug", [], function(require, exports, module){
+define("bui-common/1.1.3/src/keycode-debug", [], function(require, exports, module){
 /**
  * @fileOverview 键盘值
  * @ignore
@@ -1950,7 +2020,7 @@ var keyCode = {
 module.exports = keyCode;
 
 });
-define("bui-common/1.1.2/src/observable-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/observable-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 观察者模式实现事件
  * @ignore
@@ -1958,8 +2028,8 @@ define("bui-common/1.1.2/src/observable-debug", ["jquery"], function(require, ex
 
 var $ = require('jquery');
 
-var BUI = require("bui-common/1.1.2/src/util-debug"),
-  ArrayUtil = require("bui-common/1.1.2/src/array-debug");
+var BUI = require("bui-common/1.1.3/src/util-debug"),
+  ArrayUtil = require("bui-common/1.1.3/src/array-debug");
 /**
  * @private
  * @class BUI.Observable.Callbacks
@@ -2340,7 +2410,7 @@ BUI.augment(Observable, {
 module.exports = Observable;
 
 });
-define("bui-common/1.1.2/src/base-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/base-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview  Base UI控件的最基础的类
  * @author yiminghe@gmail.com
@@ -2351,7 +2421,7 @@ define("bui-common/1.1.2/src/base-debug", ["jquery"], function(require, exports,
 var $ = require('jquery');
 
 var INVALID = {},
-  Observable = require("bui-common/1.1.2/src/observable-debug");
+  Observable = require("bui-common/1.1.3/src/observable-debug");
 
 function ensureNonEmpty(obj, name, create) {
   var ret = obj[name] || {};
@@ -2819,7 +2889,7 @@ BUI.augment(Base, {
 module.exports = Base;
 
 });
-define("bui-common/1.1.2/src/component/component-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/component-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview Component命名空间的入口文件
  * @ignore
@@ -2835,10 +2905,10 @@ define("bui-common/1.1.2/src/component/component-debug", ["jquery"], function(re
 var Component = {};
 
 BUI.mix(Component, {
-  Manager: require("bui-common/1.1.2/src/component/manage-debug"),
-  UIBase: require("bui-common/1.1.2/src/component/uibase/uibase-debug"),
-  View: require("bui-common/1.1.2/src/component/view-debug"),
-  Controller: require("bui-common/1.1.2/src/component/controller-debug")
+  Manager: require("bui-common/1.1.3/src/component/manage-debug"),
+  UIBase: require("bui-common/1.1.3/src/component/uibase/uibase-debug"),
+  View: require("bui-common/1.1.3/src/component/view-debug"),
+  Controller: require("bui-common/1.1.3/src/component/controller-debug")
 });
 
 function create(component, self) {
@@ -2869,7 +2939,7 @@ Component.create = create;
 module.exports = Component;
 
 });
-define("bui-common/1.1.2/src/component/manage-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/manage-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview  Base UI控件的管理类
  * @author yiminghe@gmail.com
@@ -3015,32 +3085,32 @@ var Manager = {
 module.exports = Manager;
 
 });
-define("bui-common/1.1.2/src/component/uibase/uibase-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/uibase-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview uibase的入口文件
  * @ignore
  */
-var UIBase = require("bui-common/1.1.2/src/component/uibase/base-debug");
+var UIBase = require("bui-common/1.1.3/src/component/uibase/base-debug");
 
 BUI.mix(UIBase, {
-  Align: require("bui-common/1.1.2/src/component/uibase/align-debug"),
-  AutoShow: require("bui-common/1.1.2/src/component/uibase/autoshow-debug"),
-  AutoHide: require("bui-common/1.1.2/src/component/uibase/autohide-debug"),
-  Close: require("bui-common/1.1.2/src/component/uibase/close-debug"),
-  Collapsable: require("bui-common/1.1.2/src/component/uibase/collapsable-debug"),
-  Drag: require("bui-common/1.1.2/src/component/uibase/drag-debug"),
-  KeyNav: require("bui-common/1.1.2/src/component/uibase/keynav-debug"),
-  List: require("bui-common/1.1.2/src/component/uibase/list-debug"),
-  ListItem: require("bui-common/1.1.2/src/component/uibase/listitem-debug"),
-  Mask: require("bui-common/1.1.2/src/component/uibase/mask-debug"),
-  Position: require("bui-common/1.1.2/src/component/uibase/position-debug"),
-  Selection: require("bui-common/1.1.2/src/component/uibase/selection-debug"),
-  StdMod: require("bui-common/1.1.2/src/component/uibase/stdmod-debug"),
-  Decorate: require("bui-common/1.1.2/src/component/uibase/decorate-debug"),
-  Tpl: require("bui-common/1.1.2/src/component/uibase/tpl-debug"),
-  ChildCfg: require("bui-common/1.1.2/src/component/uibase/childcfg-debug"),
-  Bindable: require("bui-common/1.1.2/src/component/uibase/bindable-debug"),
-  Depends: require("bui-common/1.1.2/src/component/uibase/depends-debug")
+  Align: require("bui-common/1.1.3/src/component/uibase/align-debug"),
+  AutoShow: require("bui-common/1.1.3/src/component/uibase/autoshow-debug"),
+  AutoHide: require("bui-common/1.1.3/src/component/uibase/autohide-debug"),
+  Close: require("bui-common/1.1.3/src/component/uibase/close-debug"),
+  Collapsable: require("bui-common/1.1.3/src/component/uibase/collapsable-debug"),
+  Drag: require("bui-common/1.1.3/src/component/uibase/drag-debug"),
+  KeyNav: require("bui-common/1.1.3/src/component/uibase/keynav-debug"),
+  List: require("bui-common/1.1.3/src/component/uibase/list-debug"),
+  ListItem: require("bui-common/1.1.3/src/component/uibase/listitem-debug"),
+  Mask: require("bui-common/1.1.3/src/component/uibase/mask-debug"),
+  Position: require("bui-common/1.1.3/src/component/uibase/position-debug"),
+  Selection: require("bui-common/1.1.3/src/component/uibase/selection-debug"),
+  StdMod: require("bui-common/1.1.3/src/component/uibase/stdmod-debug"),
+  Decorate: require("bui-common/1.1.3/src/component/uibase/decorate-debug"),
+  Tpl: require("bui-common/1.1.3/src/component/uibase/tpl-debug"),
+  ChildCfg: require("bui-common/1.1.3/src/component/uibase/childcfg-debug"),
+  Bindable: require("bui-common/1.1.3/src/component/uibase/bindable-debug"),
+  Depends: require("bui-common/1.1.3/src/component/uibase/depends-debug")
 });
 
 BUI.mix(UIBase, {
@@ -3059,7 +3129,7 @@ BUI.mix(UIBase, {
 module.exports = UIBase;
 
 });
-define("bui-common/1.1.2/src/component/uibase/base-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/base-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview  UI控件的流程控制
  * @author yiminghe@gmail.com
@@ -3069,13 +3139,13 @@ define("bui-common/1.1.2/src/component/uibase/base-debug", ["jquery"], function(
 
 var $ = require('jquery');
 
-var Manager = require("bui-common/1.1.2/src/component/manage-debug"),
+var Manager = require("bui-common/1.1.3/src/component/manage-debug"),
 
   UI_SET = '_uiSet',
   ATTRS = 'ATTRS',
   ucfirst = BUI.ucfirst,
   noop = $.noop,
-  Base = require("bui-common/1.1.2/src/base-debug");
+  Base = require("bui-common/1.1.3/src/base-debug");
 /**
  * 模拟多继承
  * init attr using constructors ATTRS meta info
@@ -3619,7 +3689,7 @@ BUI.mix(UIBase, {
 module.exports = UIBase;
 
 });
-define("bui-common/1.1.2/src/component/uibase/align-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/align-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 跟指定的元素项对齐的方式
  * @author yiminghe@gmail.com
@@ -3629,7 +3699,7 @@ define("bui-common/1.1.2/src/component/uibase/align-debug", ["jquery"], function
 
 
 var $ = require('jquery'),
-  UA = require("bui-common/1.1.2/src/ua-debug"),
+  UA = require("bui-common/1.1.3/src/ua-debug"),
   CLS_ALIGN_PREFIX ='x-align-',
   win = window;
 
@@ -4104,7 +4174,7 @@ Align.prototype =
 module.exports = Align;
 
 });
-define("bui-common/1.1.2/src/component/uibase/autoshow-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/autoshow-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview click，focus,hover等引起控件显示，并且定位
  * @ignore
@@ -4380,7 +4450,7 @@ autoShow.prototype = {
 module.exports = autoShow;
 
 });
-define("bui-common/1.1.2/src/component/uibase/autohide-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/autohide-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 点击或移出控件外部，控件隐藏
  * @author dxq613@gmail.com
@@ -4574,7 +4644,7 @@ autoHide.prototype = {
 module.exports = autoHide;
 
 });
-define("bui-common/1.1.2/src/component/uibase/close-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/close-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview close 关闭或隐藏控件
  * @author yiminghe@gmail.com
@@ -4784,7 +4854,7 @@ Close.View = CloseView;
 module.exports = Close;
 
 });
-define("bui-common/1.1.2/src/component/uibase/collapsable-debug", [], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/collapsable-debug", [], function(require, exports, module){
 /**
  * @fileOverview 可以展开折叠的控件
  * @ignore
@@ -4881,7 +4951,7 @@ collapsable.View = collapsableView;
 module.exports = collapsable;
 
 });
-define("bui-common/1.1.2/src/component/uibase/drag-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/drag-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 拖拽
  * @author by dxq613@gmail.com
@@ -5120,7 +5190,7 @@ drag.prototype = {
 module.exports = drag;
 
 });
-define("bui-common/1.1.2/src/component/uibase/keynav-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/keynav-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 使用键盘导航
  * @ignore
@@ -5128,7 +5198,7 @@ define("bui-common/1.1.2/src/component/uibase/keynav-debug", ["jquery"], functio
 
 
   var $ = require('jquery'),
-    KeyCode = require("bui-common/1.1.2/src/keycode-debug"),
+    KeyCode = require("bui-common/1.1.3/src/keycode-debug"),
     wrapBehavior = BUI.wrapBehavior,
     getWrapBehavior = BUI.getWrapBehavior;
   /**
@@ -5283,7 +5353,7 @@ define("bui-common/1.1.2/src/component/uibase/keynav-debug", ["jquery"], functio
 module.exports = keyNav;
 
 });
-define("bui-common/1.1.2/src/component/uibase/list-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/list-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 所有子元素都是同一类的集合
  * @ignore
@@ -5291,7 +5361,7 @@ define("bui-common/1.1.2/src/component/uibase/list-debug", ["jquery"], function(
 
 
 var $ = require('jquery'),
-  Selection = require("bui-common/1.1.2/src/component/uibase/selection-debug");
+  Selection = require("bui-common/1.1.3/src/component/uibase/selection-debug");
 
 /**
  * 列表一类的控件的扩展，list,menu,grid都是可以从此类扩展
@@ -5957,7 +6027,7 @@ module.exports = list;
  */
 
 });
-define("bui-common/1.1.2/src/component/uibase/selection-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/selection-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 单选或者多选
  * @author  dxq613@gmail.com
@@ -6387,7 +6457,7 @@ selection.prototype =
 module.exports = selection;
 
 });
-define("bui-common/1.1.2/src/component/uibase/listitem-debug", [], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/listitem-debug", [], function(require, exports, module){
 /**
  * @fileOverview 可选中的控件,父控件支持selection扩展
  * @ignore
@@ -6468,7 +6538,7 @@ listItem.View = listItemView;
 module.exports = listItem;
 
 });
-define("bui-common/1.1.2/src/component/uibase/mask-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/mask-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview mask 遮罩层
  * @author yiminghe@gmail.com
@@ -6478,7 +6548,7 @@ define("bui-common/1.1.2/src/component/uibase/mask-debug", ["jquery"], function(
 
 
 var $ = require('jquery'),
-  UA = require("bui-common/1.1.2/src/ua-debug"),
+  UA = require("bui-common/1.1.3/src/ua-debug"),
 
   /**
    * 每组相同 prefixCls 的 position 共享一个遮罩
@@ -6707,7 +6777,7 @@ Mask.View = MaskView;
 module.exports = Mask;
 
 });
-define("bui-common/1.1.2/src/component/uibase/position-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/position-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 位置，控件绝对定位
  * @author yiminghe@gmail.com
@@ -7003,7 +7073,7 @@ Position.View = PositionView;
 module.exports = Position;
 
 });
-define("bui-common/1.1.2/src/component/uibase/stdmod-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/stdmod-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview
  * 控件包含头部（head)、内容(content)和尾部（foot)
@@ -7234,7 +7304,7 @@ StdMod.View = StdModView;
 module.exports = StdMod;
 
 });
-define("bui-common/1.1.2/src/component/uibase/decorate-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/decorate-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 使用wrapper
  * @ignore
@@ -7242,13 +7312,13 @@ define("bui-common/1.1.2/src/component/uibase/decorate-debug", ["jquery"], funct
 
 
 var $ = require('jquery'),
-  ArrayUtil = require("bui-common/1.1.2/src/array-debug"),
-  JSON = require("bui-common/1.1.2/src/json-debug"),
+  ArrayUtil = require("bui-common/1.1.3/src/array-debug"),
+  JSON = require("bui-common/1.1.3/src/json-debug"),
   prefixCls = BUI.prefix,
   FIELD_PREFIX = 'data-',
   FIELD_CFG = FIELD_PREFIX + 'cfg',
   PARSER = 'PARSER',
-  Manager = require("bui-common/1.1.2/src/component/manage-debug"),
+  Manager = require("bui-common/1.1.3/src/component/manage-debug"),
   RE_DASH_WORD = /-([a-z])/g,
   regx = /^[\{\[]/;
 
@@ -7572,7 +7642,7 @@ decorate.prototype = {
 module.exports = decorate;
 
 });
-define("bui-common/1.1.2/src/component/uibase/tpl-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/tpl-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 控件模板
  * @author dxq613@gmail.com
@@ -7778,7 +7848,7 @@ tpl.View = tplView;
 module.exports = tpl;
 
 });
-define("bui-common/1.1.2/src/component/uibase/childcfg-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/childcfg-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 子控件的默认配置项
  * @ignore
@@ -7842,7 +7912,7 @@ childCfg.prototype = {
 module.exports = childCfg;
 
 });
-define("bui-common/1.1.2/src/component/uibase/bindable-debug", [], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/bindable-debug", [], function(require, exports, module){
 /**
  * @fileOverview bindable extension class.
  * @author dxq613@gmail.com
@@ -8067,7 +8137,7 @@ BUI.augment(bindable, {
 module.exports = bindable;
 
 });
-define("bui-common/1.1.2/src/component/uibase/depends-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/uibase/depends-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 依赖扩展，用于观察者模式中的观察者
  * @ignore
@@ -8076,7 +8146,7 @@ define("bui-common/1.1.2/src/component/uibase/depends-debug", ["jquery"], functi
 
 var $ = require('jquery'),
   regexp = /^#(.*):(.*)$/,
-  Manager = require("bui-common/1.1.2/src/component/manage-debug");
+  Manager = require("bui-common/1.1.3/src/component/manage-debug");
 
 //获取依赖信息
 function getDepend(name) {
@@ -8267,7 +8337,7 @@ Depends.prototype = {
 module.exports = Depends;
 
 });
-define("bui-common/1.1.2/src/component/view-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/view-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview  控件的视图层
  * @author yiminghe@gmail.com
@@ -8277,8 +8347,8 @@ define("bui-common/1.1.2/src/component/view-debug", ["jquery"], function(require
 
 var $ = require('jquery'),
   win = window,
-  Manager = require("bui-common/1.1.2/src/component/manage-debug"),
-  UIBase = require("bui-common/1.1.2/src/component/uibase/uibase-debug"), //BUI.Component.UIBase,
+  Manager = require("bui-common/1.1.3/src/component/manage-debug"),
+  UIBase = require("bui-common/1.1.3/src/component/uibase/uibase-debug"), //BUI.Component.UIBase,
   doc = document;
 
 /**
@@ -8717,7 +8787,7 @@ View.ATTRS = {
 module.exports = View;
 
 });
-define("bui-common/1.1.2/src/component/controller-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/controller-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview  控件可以实例化的基类
  * @ignore
@@ -8735,10 +8805,10 @@ define("bui-common/1.1.2/src/component/controller-debug", ["jquery"], function(r
 'use strict';
 
 var $ = require('jquery'), 
-  UIBase = require("bui-common/1.1.2/src/component/uibase/uibase-debug"),
-  Manager = require("bui-common/1.1.2/src/component/manage-debug"),
-  View = require("bui-common/1.1.2/src/component/view-debug"),
-  Loader = require("bui-common/1.1.2/src/component/loader-debug"),
+  UIBase = require("bui-common/1.1.3/src/component/uibase/uibase-debug"),
+  Manager = require("bui-common/1.1.3/src/component/manage-debug"),
+  View = require("bui-common/1.1.3/src/component/view-debug"),
+  Loader = require("bui-common/1.1.3/src/component/loader-debug"),
   wrapBehavior = BUI.wrapBehavior,
   getWrapBehavior = BUI.getWrapBehavior;
 
@@ -10420,7 +10490,7 @@ var Controller = UIBase.extend([UIBase.Decorate, UIBase.Tpl, UIBase.ChildCfg, UI
 module.exports = Controller;
 
 });
-define("bui-common/1.1.2/src/component/loader-debug", ["jquery"], function(require, exports, module){
+define("bui-common/1.1.3/src/component/loader-debug", ["jquery"], function(require, exports, module){
 /**
  * @fileOverview 加载控件内容
  * @ignore
@@ -10428,8 +10498,8 @@ define("bui-common/1.1.2/src/component/loader-debug", ["jquery"], function(requi
 
 'use strict';
 var $ = require('jquery'),
-  BUI = require("bui-common/1.1.2/src/util-debug"),
-  Base = require("bui-common/1.1.2/src/base-debug"),
+  BUI = require("bui-common/1.1.3/src/util-debug"),
+  Base = require("bui-common/1.1.3/src/base-debug"),
   /**
    * @class BUI.Component.Loader
    * @extends BUI.Base

@@ -609,6 +609,71 @@ describe('uitl测试', function(){
       expect(BUI.unparam(str)).to.eql({a:'中文'});
     })
   });
+
+  describe('set,get value', function(){
+
+    it('测试直接设置值',function(){
+      var obj = {
+        
+      };
+
+      BUI.setValue(obj,'a',123);
+      expect(obj.a).to.be(123);
+    });
+
+    it('测试全路径设置值',function(){
+      var obj = {
+        a : {
+          b : {
+          }
+        }
+      };
+
+      BUI.setValue(obj,'a.b.c',123);
+      expect(obj.a.b.c).to.be(123);
+    });
+
+    it('测试非全路径设置值',function(){
+      var obj = {};
+      BUI.setValue(obj,'a.b.c',123);
+      expect(obj.a.b.c).to.be(123);
+    }); 
+
+    it('测试 null 设置',function(){
+      var obj = null;
+      BUI.setValue(obj,'a.b.c',123);
+      expect(obj).to.be(null);
+    });
+
+
+    it('测试直接获取值',function(){
+      var obj = {
+        a : 123
+      };
+
+      expect(BUI.getValue(obj,'a')).to.be(123);
+    });
+
+    it('测试获取',function(){
+      var obj = {
+        a : {
+          b : {
+            c : 123
+          }
+        }
+      };
+      expect(BUI.getValue(obj,'a.b.c')).to.be(123);
+    });
+
+    it('测试获取非全路径',function(){
+      var obj = {
+        a : {
+          
+        }
+      };
+      expect(BUI.getValue(obj,'a.b.c')).to.be(null);
+    });
+
+  });
 });
-/**/
-/**/
+
