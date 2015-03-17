@@ -20,7 +20,7 @@ BUI.mix(UIBase, {
   StdMod: require('./stdmod'),
   Decorate: require('./decorate'),
   Tpl: require('./tpl'),
-  ChildCfg: require('./childcfg'),
+  ChildCfg: require('./childCfg'),
   Bindable: require('./bindable'),
   Depends: require('./depends')
 });
